@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reply;
 
+
 class PostController extends Controller
 {
     public function index()
