@@ -39,7 +39,8 @@
             <form method="POST" action="{{ route('posts.reply', $post->id) }}">
               @csrf
               <div class="form-group">
-                <textarea name="body" class="form-control" rows="3"></textarea>
+                <textarea name="body" class="form-control" rows="3">
+                </textarea>
               </div>
               <button type="submit" class="btn btn-primary">返信する</button>
             </form>

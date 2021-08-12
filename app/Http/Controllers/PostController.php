@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reply;
+use App\Http\Requests\User\StoreRequest;
 
 
 class PostController extends Controller
@@ -20,7 +21,7 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $post = new Post;
         $post->fill($request->all());

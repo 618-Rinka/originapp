@@ -10,6 +10,10 @@
         <div class="card-body">
           <form method="POST" action="{{ route('posts.store') }}">
             @csrf
+            @foreach($errors->all() as $message)
+              <div>{{ $message }}</div>
+            @endforeach
+
             <div class="form-group row">
               <label for="body" class="col-md-4 col-form-label text-md-right">内容</label>
 
