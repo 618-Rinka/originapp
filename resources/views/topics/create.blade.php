@@ -8,7 +8,7 @@
         <div class="card-header">投稿する</div>
 
         <div class="card-body">
-          <form method="POST" action="{{ route('posts.store') }}">
+          <form method="POST" action="{{ route('topics.store') }}">
             @csrf
             @foreach($errors->all() as $message)
               <div>{{ $message }}</div>

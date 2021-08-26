@@ -13,7 +13,7 @@ class Reply extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function post()
+    public function topic()
     {
         return $this->belongsTo(Reply::class);
     }

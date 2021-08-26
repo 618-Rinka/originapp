@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Post extends Model
+class Topic extends Model
 {
     use SoftDeletes;
 
@@ -21,9 +21,9 @@ class Post extends Model
     {
         return $this->hasMany(Reply::class);
     }
-    public function bookmarkingUsers()
+    public function likingUsers()
     {
-        return $this->belongsToMany(User::class,'bookmarks');
+        return $this->belongsToMany(User::class,'likes');
     }
 
 }

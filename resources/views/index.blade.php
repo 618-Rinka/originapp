@@ -2,29 +2,29 @@
 
 @section('content')
   <div class="container">
-    @foreach($posts as $post)
+    @foreach($topics as $topic)
       <div class="card">
-        <div class="card-header">{{ $post->user->name }}</div>
+        <div class="card-header">{{ $topic->user->name }}</div>
         <div class="card-body">
-          <p class="card-text">{{ $post->body }}</p>
-          <p class="card-text"><a href="{{ route('posts.show', $post->id) }}">詳細を見る</a></p>
+          <p class="card-text">{{ $topic->body }}</p>
+          <p class="card-text"><a href="{{ route('topics.show', $topic->id) }}">詳細を見る</a></p>
 
           @auth
-          @unless($post->bookmarkingUsers->contains(Auth::id()))
-            <form method="POST" action="{{ route('bookmarks.add',$post->id) }}">
+          @unless($topic->likingUsers->contains(Auth::id()))
+            <form method="POST" action="{{ route('likes.add',$topic->id) }}">
               @csrf
-              <button type="submit" class="btn btn-success">ブックマークする</button>
+              <button type="submit" class="btn btn-success">いいねする</button>
             </form>
           @else
-            <form method="POST" action="{{ route('bookmarks.remove', $post->id) }}">
+            <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
              @csrf
-             <button type="submit" class="btn btn-danger">ブックマークを解除する</button>
+             <button type="submit" class="btn btn-danger">いいねを解除する</button>
             </form>
           @endunless
         @endauth
 
-          @if(Auth::id() === $post->user_id)
-            <form method="POST" action="{{ route('posts.delete', $post->id) }}">
+          @if(Auth::id() === $topic->user_id)
+            <form method="POST" action="{{ route('topics.delete', $topic->id) }}">
               @csrf
               <button type="submit" class="btn btn-danger">削除</button>
             </form>

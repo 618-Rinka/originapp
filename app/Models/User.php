@@ -37,9 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function bookmarkingPosts()
+    public function likingPosts()
     {
-        return $this->belongsToMany(Post::class,'bookmarks');
+        return $this->belongsToMany(Topic::class,'likes');
     }
 }
 

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostController@index');
+Route::get('/', 'TopicController@index');
 
 Auth::routes();
 
@@ -28,18 +28,21 @@ Route::middleware('auth')->group(function(){
     Route::post('me','UserController@update')->name('users.update');
 });
 
-Route::prefix('posts')->as('posts.')->group(function () {
+Route::prefix('topics')->as('topics.')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('create', 'PostController@create')->name('create');
-        Route::post('store', 'PostController@store')->name('store');
-        Route::post('{post}/delete', 'PostController@delete')->name('delete');
-        Route::post('{post}/reply', 'PostController@reply')->name('reply'); 
+        Route::get('create', 'TopicController@create')->name('create');
+        Route::post('store', 'TopicController@store')->name('store');
+        Route::post('{topic}/delete', 'TopicController@delete')->name('delete');
+        Route::post('{topic}/reply', 'TopicController@reply')->name('reply'); 
     });
-        Route::get('{post}', 'PostController@show')->name('show');
+        Route::get('{topic}', 'TopicController@show')->name('show');
 });
 
-Route::middleware('auth')->prefix('bookmarks')->as('bookmarks.')->group(function () {
-    Route::get('/', 'BookmarkController@index')->name('index');
-    Route::post('{post}', 'BookmarkController@add')->name('add');
-    Route::post('{post}/remove', 'BookmarkController@remove')->name('remove');
+Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
+    Route::get('/', 'LikeController@index')->name('index');
+    Route::post('{topic}', 'LikeController@add')->name('add');
+    Route::post('{topic}/remove', 'LikeController@remove')->name('remove');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

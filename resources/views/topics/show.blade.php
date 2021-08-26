@@ -3,19 +3,19 @@
 @section('content')
   <div class="container">
     <div class="card">
-      <div class="card-header">{{ $post->user->name }}</div>
+      <div class="card-header">{{ $topic->user->name }}</div>
       <div class="card-body">
-        <p class="card-text">{{ $post->body }}</p>
+        <p class="card-text">{{ $topic->body }}</p>
         @auth
-          @unless($bookmarked)
-            <form method="POST" action="{{ route('bookmarks.add',$post->id) }}">
+          @unless($liked)
+            <form method="POST" action="{{ route('likes.add',$topic->id) }}">
               @csrf
-              <button type="submit" class="btn btn-success">ブックマークする</button>
+              <button type="submit" class="btn btn-success">いいねする</button>
             </form>
           @else
-            <form method="POST" action="{{ route('bookmarks.remove', $post->id) }}">
+            <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
              @csrf
-             <button type="submit" class="btn btn-danger">ブックマークを解除する</button>
+             <button type="submit" class="btn btn-danger">いいねを解除する</button>
             </form>
           @endunless
         @endauth
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="container mt-4">
-    @foreach($post->replies as $reply)
+    @foreach($topic->replies as $reply)
     <div class="card">
       <div class="card-header">{{ $reply->user->name }}</div>
       <div class="card-body">
@@ -36,7 +36,7 @@
       <div class="card">
         <div class="card-header">{{ Auth::user()->name }}</div>
           <div class="card-body">
-            <form method="POST" action="{{ route('posts.reply', $post->id) }}">
+            <form method="POST" action="{{ route('topics.reply', $topic->id) }}">
               @csrf
               <div class="form-group">
                 <textarea name="body" class="form-control" rows="3">
