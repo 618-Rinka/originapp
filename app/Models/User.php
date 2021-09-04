@@ -41,5 +41,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Topic::class,'likes');
     }
+
+    public function likingReplies()
+    {
+        return $this->belongsToMany(Reply::class,'likes');
+    }
 }
 

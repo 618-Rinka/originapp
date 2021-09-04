@@ -17,4 +17,10 @@ class Reply extends Model
     {
         return $this->belongsTo(Reply::class);
     }
+    
+    public function likingUsers()
+    {
+        return $this->belongsToMany(User::class,'likes');
+    }
+
 }

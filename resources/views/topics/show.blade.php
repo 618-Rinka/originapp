@@ -28,6 +28,20 @@
       <div class="card-header">{{ $reply->user->name }}</div>
       <div class="card-body">
         <p class="card-text">{{ $reply->body }}</p>
+        @auth
+          @unless($liked)
+            <form method="POST" action="{{ route('likes.add',$reply->id) }}">
+              @csrf
+              <button type="submit" class="btn btn-success">いいねする</button>
+            </form>
+          @else
+            <form method="POST" action="{{ route('likes.remove', $reply->id) }}">
+             @csrf
+             <button type="submit" class="btn btn-danger">いいねを解除する</button>
+            </form>
+          @endunless
+        @endauth
+
       </div>
     </div>
     @endforeach
