@@ -11,21 +11,21 @@ class LikeController extends Controller
 {
     public function index()
     {
-        $topics = Auth::user()->likingPosts;
+        $topics = Auth::user()->likingTopics;
 
         return view('likes.index', ['topics' => $topics]);
     }
 
     public function add(Topic $topic)
     {
-        Auth::user()->likingPosts()->attach($topic->id);
+        Auth::user()->likingTopics()->attach($topic->id);
 
         return redirect()->back();
     }
 
     public function remove(Topic $topic)
     {
-        Auth::user()->likingPosts()->detach($topic->id);
+        Auth::user()->likingTopics()->detach($topic->id);
 
         return redirect()->back();
     }
@@ -39,7 +39,12 @@ class LikeController extends Controller
     
     public function addReply(Reply $reply)
     {
-        Auth::user()->likingReplies()->attach($reply->id, [ 'topic_id' => $reply->topic_id ]);
+        $reply = Auth::user()->likingReplies()->where('replies.id', $reply->id)->first();
+        $count = $reply->pivot->count;
+        if ($count < 10) {
+            Auth::user()->likingReplies()->detach($reply->id);
+            Auth::user()->likingReplies()->attach($reply->id, ['count' => $count + 1]);
+        }
 
         return redirect()->back();
     }

@@ -17,6 +17,7 @@ class CreateLikesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('topic_id')->nullable();
             $table->unsignedBigInteger('reply_id')->nullable();
+            $table->unsignedInteger('count')->default(1);
 
         });
     }

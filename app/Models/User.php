@@ -37,14 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function likingPosts()
+    public function likingTopics()
     {
-        return $this->belongsToMany(Topic::class,'likes');
+        return $this->belongsToMany(Topic::class, 'likes')->withPivot('count');
     }
-
+    
     public function likingReplies()
     {
-        return $this->belongsToMany(Reply::class,'likes');
+        return $this->belongsToMany(Reply::class, 'likes')->withPivot('count');
     }
 }
 
