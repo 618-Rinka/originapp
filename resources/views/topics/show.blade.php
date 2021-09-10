@@ -7,7 +7,7 @@
       <div class="card-body">
         <p class="card-text">{{ $topic->body }}</p>
         @auth
-          @unless($liked)
+        @unless($topic->likingUsers->contains(Auth::id()))
             <form method="POST" action="{{ route('likes.add',$topic->id) }}">
               @csrf
               <button type="submit" class="btn btn-success">いいねする</button>
@@ -29,7 +29,7 @@
       <div class="card-body">
         <p class="card-text">{{ $reply->body }}</p>
         @auth
-          @unless($liked)
+          @unless($reply->likingUsers->contains(Auth::id()))
             <form method="POST" action="{{ route('likes.add',$reply->id) }}">
               @csrf
               <button type="submit" class="btn btn-success">いいねする</button>
