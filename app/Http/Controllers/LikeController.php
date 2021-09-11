@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Topic;
 use App\Models\Reply;
-
+use App\Models\User;
 
 class LikeController extends Controller
 {
@@ -39,14 +39,17 @@ class LikeController extends Controller
     
     public function addReply(Reply $reply)
     {
-        $reply = Auth::user()->likingReplies()->where('replies.id', $reply->id)->first();
-        $count = $reply->pivot->count;
-        if ($count < 10) {
+        // ログインユーザーがいいねした返信を取得
+        // 最初は、 $likedReplyは NULL
+        // 2回目以降は、1つReplyのデータが取得可能
+        $likedReply = Auth::user()->likingReplies()->where('replies.id', $reply->id)->first();
+        // 今ログインユーザーが対象の返信に対して何回いいねしたかを取得
+        // 最初を0とする
+        $count = (optional(optional($likedReply)->pivot)->count ?? 0) + 1;
+        if ($count <= 10) {
             Auth::user()->likingReplies()->detach($reply->id);
-            Auth::user()->likingReplies()->attach($reply->id, ['count' => $count + 1]);
-        }
-
-        return redirect()->back();
+            Auth::user()->likingReplies()->attach($reply->id, compact('count'));
+        }        return redirect()->back();
     }
     
     public function removeReply(Reply $reply)

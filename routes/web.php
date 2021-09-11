@@ -40,14 +40,14 @@ Route::prefix('topics')->as('topics.')->group(function () {
 
 Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
     Route::get('/', 'LikeController@index')->name('index');
-    Route::post('{topic}', 'LikeController@add')->name('add');
-    Route::post('{topic}/remove', 'LikeController@remove')->name('remove');
+    Route::post('topic/{topic}', 'LikeController@add')->name('add');
+    Route::post('topic/{topic}/remove', 'LikeController@remove')->name('remove');
 });
 
 Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
-    Route::get('/', 'LikeController@index')->name('indexReply');
-    Route::post('{reply}', 'LikeController@add')->name('addReply');
-    Route::post('{reply}/remove', 'LikeController@remove')->name('removeReply');
+    Route::get('/', 'LikeController@indexReply')->name('indexReply');
+    Route::post('reply/{reply}', 'LikeController@addReply')->name('addReply');
+    Route::post('reply/{reply}/remove', 'LikeController@removeReply')->name('removeReply');
 });
 
 

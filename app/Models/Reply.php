@@ -20,7 +20,7 @@ class Reply extends Model
     
     public function likingUsers()
     {
-        return $this->belongsToMany(User::class,'likes');
+        return $this->belongsToMany(User::class,'likes')->withPivot('count');
     }
 
 }
