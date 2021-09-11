@@ -25,19 +25,28 @@
         <div class="card-body">
           <p class="card-text">{{ $topic->body }}</p>
           <p class="card-text"><a href="{{ route('topics.show', $topic->id) }}">詳細を見る</a></p>
-
           @auth
-          @unless($topic->likingUsers->contains(Auth::id()))
+          @php
+            $user = $topic->likingUsers->firstWhere('id', Auth::id());
+            $count = optional(optional($user)->pivot)->count ?? 0;
+          @endphp
+          @if($count < 101)
             <form method="POST" action="{{ route('likes.add',$topic->id) }}">
               @csrf
-              <button type="submit" class="btn btn-success">いいねする</button>
+              <button type="submit" class="btn btn-success">いいねする{{ $count > 0 ? '（' . $count . '）' : '' }}</button>
             </form>
           @else
+          <button type="submit" class="btn btn-success">いいねは100回までです</button>
+          @endif
+        @endauth
+
+        @auth
+          @if($topic->likingUsers->contains(Auth::id()))
             <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
              @csrf
              <button type="submit" class="btn btn-danger">いいねを解除する</button>
             </form>
-          @endunless
+          @endif
         @endauth
 
           @if(Auth::id() === $topic->user_id)

@@ -7,19 +7,29 @@
       <div class="card-body">
         <p class="card-text">{{ $topic->body }}</p>
         @auth
-        @unless($topic->likingUsers->contains(Auth::id()))
+          @php
+            $user = $topic->likingUsers->firstWhere('id', Auth::id());
+            $count = optional(optional($user)->pivot)->count ?? 0;
+          @endphp
+          @if($count < 101)
             <form method="POST" action="{{ route('likes.add',$topic->id) }}">
               @csrf
-              <button type="submit" class="btn btn-success">いいねする</button>
+              <button type="submit" class="btn btn-success">いいねする{{ $count > 0 ? '（' . $count . '）' : '' }}</button>
             </form>
           @else
-            <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
-             @csrf
-             <button type="submit" class="btn btn-danger">いいねを解除する</button>
-            </form>
-          @endunless
-        @endauth
-      </div>
+          <button type="submit" class="btn btn-success">いいねは100回までです</button>
+          @endif
+          @endauth
+
+          @auth
+            @if($topic->likingUsers->contains(Auth::id()))
+              <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
+              @csrf
+              <button type="submit" class="btn btn-danger">いいねを解除する</button>
+              </form>
+            @endif
+          @endauth
+</div>
     </div>
   </div>
   <div class="container mt-4">
@@ -33,18 +43,28 @@
             $user = $reply->likingUsers->firstWhere('id', Auth::id());
             $count = optional(optional($user)->pivot)->count ?? 0;
           @endphp
-          @if($count < 10)
+          @if($count < 101)
             <form method="POST" action="{{ route('likes.addReply',$reply->id) }}">
               @csrf
               <button type="submit" class="btn btn-success">いいねする{{ $count > 0 ? '（' . $count . '）' : '' }}</button>
             </form>
           @else
-            <form method="POST" action="{{ route('likes.removeReply', $reply->id) }}">
-             @csrf
-             <button type="submit" class="btn btn-danger">いいねを解除する</button>
-            </form>
+          <button type="submit" class="btn btn-success">いいねは100回までです</button>
           @endif
-        @endauth
+          @endauth
+
+          @auth
+            @if($reply->likingUsers->contains(Auth::id()))
+              <form method="POST" action="{{ route('likes.removeReply', $reply->id) }}">
+              @csrf
+              <button type="submit" class="btn btn-danger">いいねを解除する</button>
+              </form>
+            @endif
+          @endauth
+</div>
+    </div>
+    @endforeach
+
     @auth
       <div class="card">
         <div class="card-header">{{ Auth::user()->name }}</div>

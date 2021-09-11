@@ -18,7 +18,14 @@ class LikeController extends Controller
 
     public function add(Topic $topic)
     {
-        Auth::user()->likingTopics()->attach($topic->id);
+        $likedTopic = Auth::user()->likingTopics()->where('topics.id', $topic->id)->first();
+        // 今ログインユーザーが対象の返信に対して何回いいねしたかを取得
+        // 最初を0とする
+        $count = (optional(optional($likedTopic)->pivot)->count ?? 0) + 1;
+        if ($count <= 100) {
+            Auth::user()->likingTopics()->detach($topic->id);
+            Auth::user()->likingTopics()->attach($topic->id, compact('count'));
+        }        
 
         return redirect()->back();
     }
@@ -46,10 +53,11 @@ class LikeController extends Controller
         // 今ログインユーザーが対象の返信に対して何回いいねしたかを取得
         // 最初を0とする
         $count = (optional(optional($likedReply)->pivot)->count ?? 0) + 1;
-        if ($count <= 10) {
+        if ($count <= 100) {
             Auth::user()->likingReplies()->detach($reply->id);
             Auth::user()->likingReplies()->attach($reply->id, compact('count'));
-        }        return redirect()->back();
+        }        
+        return redirect()->back();
     }
     
     public function removeReply(Reply $reply)
