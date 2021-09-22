@@ -54,3 +54,10 @@ Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//入力
+Route::get('/contact', 'ContactController@index')->name('index');
+//確認
+Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
+//送信完了
+Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
