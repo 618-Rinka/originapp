@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\ContactSendmail;
 
 class ContactController extends Controller
 {
@@ -33,7 +34,7 @@ class ContactController extends Controller
         $request->validate([
             'email' => 'required|email',
             'name' => 'required',
-            'message'  => 'required'
+            'message'  => 'required|string'
         ]);
 
         //フォームから受け取ったactionの値を取得

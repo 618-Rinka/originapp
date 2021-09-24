@@ -103,7 +103,7 @@
                                 <!-- Name input-->
                                 <input class="form-control" name="name" value="{{ old('name') }}" placeholder="Your Name *" data-sb-validations="required" />
                                 @if ($errors->has('name'))
-                                  <p class="error-message">{{ $errors->first('email') }}</p>
+                                  <p class="error-message">{{ $errors->first('name') }}</p>
                                 @endif                            
                               </div>
                             <div class="form-group">

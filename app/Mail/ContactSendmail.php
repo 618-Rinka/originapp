@@ -32,7 +32,7 @@ class ContactSendmail extends Mailable
      *
      * @return $this
      */
-    /*public function build()
+    public function build()
     {
         return $this
             ->from('example@gmail.com')
@@ -40,8 +40,8 @@ class ContactSendmail extends Mailable
             ->view('contact.mail')
             ->with([
                 'email' => $this->email,
-                'neme' => $this->name,
+                'name' => $this->name,
                 'message'  => $this->message,
             ]);
-    }*/
+    }
 }
