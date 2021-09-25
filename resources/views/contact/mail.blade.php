@@ -1,10 +1,10 @@
 お問い合わせ内容を受け付けました。<br>
 <br>
 ■メールアドレス<br>
-{!! $email !!}<br>
+{!! $inputs['email'] !!}<br>
 <br>
 ■お名前<br>
-{!! $name !!}<br>
+{!! $inputs['name'] !!}<br>
 <br>
 ■お問い合わせ内容<br>
-{!! nl2br($message) !!}<br>
+<?php echo nl2br(htmlspecialchars($inputs['message'])); ?><br>

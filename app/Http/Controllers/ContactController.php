@@ -34,7 +34,7 @@ class ContactController extends Controller
         $request->validate([
             'email' => 'required|email',
             'name' => 'required',
-            'message'  => 'required|string'
+            'message'  => 'required'
         ]);
 
         //フォームから受け取ったactionの値を取得
@@ -50,11 +50,11 @@ class ContactController extends Controller
                 ->withInput($inputs);
 
         } else {
-            /*//入力されたメールアドレスにメールを送信
+            //入力されたメールアドレスにメールを送信
            \Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
 
             //再送信を防ぐためにトークンを再発行
-            $request->session()->regenerateToken();*/
+            $request->session()->regenerateToken();
 
             //送信完了ページのviewを表示
             return view('contact.thanks');

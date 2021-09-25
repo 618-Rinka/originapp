@@ -14,6 +14,7 @@ class ContactSendmail extends Mailable
     private $email;
     private $name;
     private $message;
+    protected $inputs;
 
     /**
      * Create a new message instance.
@@ -22,9 +23,7 @@ class ContactSendmail extends Mailable
      */
     public function __construct( $inputs )
     {
-        $this->email = $inputs['email'];
-        $this->name = $inputs['name'];
-        $this->message  = $inputs['message'];
+        $this->inputs = $inputs;
     }
 
     /**
@@ -39,9 +38,7 @@ class ContactSendmail extends Mailable
             ->subject('自動送信メール')
             ->view('contact.mail')
             ->with([
-                'email' => $this->email,
-                'name' => $this->name,
-                'message'  => $this->message,
+                'inputs' => $this->inputs,
             ]);
     }
 }

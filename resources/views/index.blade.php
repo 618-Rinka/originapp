@@ -118,9 +118,9 @@
                             <div class="form-group form-group-textarea mb-md-0">
                                 <!-- Message input-->
                                 <textarea class="form-control" name="message" placeholder="Your Message *" data-sb-validations="required">{{ old('message') }}</textarea>
-                                @if ($errors->has('body'))
-                                  <p class="error-message">{{ $errors->first('body') }}</p>
-                                @endif                            
+                                @if ($errors->has('message'))
+                                  <p class="error-message">{{ $errors->first('message') }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
