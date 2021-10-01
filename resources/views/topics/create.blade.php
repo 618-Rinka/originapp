@@ -21,7 +21,10 @@
                 <input id="body" type="text" class="form-control" name="body" value="" required autofocus>
               </div>
             </div>
-
+            <form action="{{ route('topics.store') }}" method="POST" enctype="multipart/form-data">
+              @csrf 
+              <input id="image" type="file" name="image">
+            </form>
             <div class="form-group row mb-0">
               <div class="col-md-8 offset-md-4">
                 <button type="submit" class="btn btn-primary">投稿</button>

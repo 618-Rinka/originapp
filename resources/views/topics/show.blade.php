@@ -5,7 +5,10 @@
     <div class="card">
       <div class="card-header">{{ $topic->user->name }}</div>
       <div class="card-body">
-        <p class="card-text">{{ $topic->body }}</p>
+        <p class="card-text">{{ $topic->body }}
+           <img src="public/storage/uploads/{{ $topic->image }}" width="100px">
+
+        </p>
         @auth
           @php
             $user = $topic->likingUsers->firstWhere('id', Auth::id());

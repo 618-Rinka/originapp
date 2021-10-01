@@ -23,11 +23,21 @@ class TopicController extends Controller
     }
     public function store(StoreRequest $request)
     {
+        if($file = $request->image){
+            $filename=time().'.'.$file->getClientOriginalName();
+            $target_path = public_path('/uploads/');
+            $file->move($target_path,$filename);
+        } else {
+            $filename="";
+        }
+
+    
         $topic = new Topic;
         $topic->fill($request->all());
         $topic->user()->associate(Auth::user()); // ★
+        $topic->image = $filename;
         $topic->save();
-    
+
         return redirect()->to('/'); // '/' へリダイレクト
     }
     public function delete(Topic $topic)
@@ -57,4 +67,6 @@ class TopicController extends Controller
 
         return redirect()->back();
     }
+
+
 }

@@ -61,3 +61,5 @@ Route::get('/contact', 'ContactController@index')->name('index');
 Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
 //送信完了
 Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
+
+Route::resource('topics','TopicController',['only'=>['index','create','store']]);
