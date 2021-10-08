@@ -18,7 +18,12 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Topic List</h2>
-                </div>
+                </div> 
+
+                <h3>検索</h3>
+                <form action="{{ route('topics.show') }}" method="GET"><p><input type="text" name="keyword" value="@if (isset($keyword)) {{ $keyword }} @endif">
+                <input type="submit" value="検索"></p></form>
+                
                 <div class="row">
                   @foreach($topics as $topic)
                     <div class="col-lg-4 col-sm-6 mb-4">

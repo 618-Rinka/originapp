@@ -68,5 +68,20 @@ class TopicController extends Controller
         return redirect()->back();
     }
 
+    public function indexsearch(Request $request)
+    {
+        $keyword = $request->input('keyword');
+ 
+        $query = Topic::query();
+ 
+        if (!empty($keyword)) {
+            $query->where('body', 'LIKE', "%{$keyword}%");
+        }
+ 
+ 
+        $topics = $query->get();
+ 
+        return view('index', compact('keyword'));
+    }
 
 }

@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\TopicController;
+
 Route::get('/', 'TopicController@index');
 
 Auth::routes();
@@ -63,3 +65,5 @@ Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.conf
 Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
 
 Route::resource('topics','TopicController',['only'=>['index','create','store']]);
+
+Route::get('/topics','TopicController@indexsearch');
