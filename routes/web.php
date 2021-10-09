@@ -11,17 +11,10 @@
 |
 */
 
-use App\Http\Controllers\TopicController;
-
-Route::get('/', 'TopicController@index');
 
 Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-//Route::get('/users/1', function () {
-    //return view('users.show');
-//});
 
 Route::get('/users/{id}', 'UserController@show');
 
@@ -37,7 +30,8 @@ Route::prefix('topics')->as('topics.')->group(function () {
         Route::post('{topic}/delete', 'TopicController@delete')->name('delete');
         Route::post('{topic}/reply', 'TopicController@reply')->name('reply'); 
     });
-        Route::get('{topic}', 'TopicController@show')->name('show');
+    Route::get('{topic}', 'TopicController@show')->name('show');
+    Route::get('', 'TopicController@index')->name('index');
 });
 
 Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
@@ -64,6 +58,3 @@ Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.conf
 //送信完了
 Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
 
-Route::resource('topics','TopicController',['only'=>['index','create','store']]);
-
-Route::get('/topics','TopicController@indexsearch');
