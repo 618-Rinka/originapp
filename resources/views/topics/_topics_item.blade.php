@@ -37,6 +37,12 @@
                 </div>
             </div>
         @endauth
+<<<<<<< HEAD
         
     </div>
 </div> 
+=======
+
+    </div>
+</div>
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f

@@ -17,7 +17,11 @@ class CreateTopicsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('body');
+<<<<<<< HEAD
             $table->longtext('image')->nullable();
+=======
+            $table->longText('image')->nullable();
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
             $table->timestamps();
             $table->softDeletes();
         });

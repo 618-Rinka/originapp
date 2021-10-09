@@ -11,18 +11,24 @@
 |
 */
 
+<<<<<<< HEAD
 use App\Http\Controllers\TopicController;
 //Route::get('/', 'TopicController@index');
+=======
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/users/1', function () {
     //return view('users.show');
 //});
+=======
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
 
 Route::get('/users/{id}', 'UserController@show');
 
@@ -38,8 +44,13 @@ Route::prefix('topics')->as('topics.')->group(function () {
         Route::post('{topic}/delete', 'TopicController@delete')->name('delete');
         Route::post('{topic}/reply', 'TopicController@reply')->name('reply'); 
     });
+<<<<<<< HEAD
         Route::get('{topic}', 'TopicController@show')->name('show');
         Route::get('', 'TopicController@index')->name('index');
+=======
+    Route::get('{topic}', 'TopicController@show')->name('show');
+    Route::get('', 'TopicController@index')->name('index');
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
 });
 
 Route::middleware('auth')->prefix('likes')->as('likes.')->group(function () {
@@ -66,6 +77,9 @@ Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.conf
 //送信完了
 Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
 
+<<<<<<< HEAD
 //Route::resource('topics','TopicController',['only'=>['index','create','store']]);
 
 //Route::get('/topics','TopicController@indexsearch');
+=======
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f

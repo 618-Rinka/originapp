@@ -20,10 +20,13 @@
                 <input id="body" type="text" class="form-control" name="body" value="" required autofocus>
               </div>
             </div>
+<<<<<<< HEAD
             <!--<form action="{{ route('topics.store') }}" method="POST" enctype="multipart/form-data">
               @csrf 
               <input id="image" type="file" name="image">
             </form>-->
+=======
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
             <div class="form-group row my-2">
               <label for="body" class="col-md-4 col-form-label text-md-right">画像</label>
               <div class="col-md-6">

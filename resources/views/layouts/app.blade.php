@@ -57,6 +57,7 @@
                                 </li>
                             @endif
                         @else
+<<<<<<< HEAD
                           <!--  <li class="nav-item dropdown">
                                 <button class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,6 +83,9 @@
                                 
                             </li> -->
                             <div class="dropdown">
+=======
+                        <div class="dropdown">
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
@@ -89,8 +93,11 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ route('topics.create') }}">投稿する</a></li>
                                 <li><a class="dropdown-item" href="{{ route('topics.index') }}">投稿一覧</a></li>
+<<<<<<< HEAD
                                 <li><a class="dropdown-item" href="{{ route('users.update') }}">プロフィール編集</a></li>
   
+=======
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('logout') }}

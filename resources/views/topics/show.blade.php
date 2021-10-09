@@ -7,11 +7,17 @@
       <div class="card-body">
         <p class="card-text">
           {{ $topic->body }}
+<<<<<<< HEAD
           <!-- <img src="public/storage/uploads/{{ $topic->image }}" width="100px"> -->
           @if ($topic->image)
             <img src="data:image/jpeg;base64, {{ $topic->image }}" class="rounded mx-auto d-block" alt="{{ $topic->body }}" width="300px">
           @endif
 
+=======
+          @if ($topic->image)
+            <img src="data:image/jpeg;base64, {{ $topic->image }}" class="rounded mx-auto d-block" alt="{{ $topic->body }}">
+          @endif
+>>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
         </p>
         @auth
           @php
