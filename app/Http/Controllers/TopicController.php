@@ -8,21 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reply;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
-<<<<<<< HEAD
-
-=======
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
 
 class TopicController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< HEAD
         //$topics = Topic::with(['user'])->orderBy('created_at','desc')->get();
         //return view('index', ['topics' => $topics]);
 
-=======
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
         $topics = Topic::with(['user'])
             ->when($request->keyword ?? null, function($query, $keyword) {
                 $query->where(function($query) use ($keyword) {
@@ -44,7 +37,6 @@ class TopicController extends Controller
     }
     public function store(StoreRequest $request)
     {
-<<<<<<< HEAD
        // if($file = $request->image){
         //    $filename=time().'.'.$file->getClientOriginalName();
         //    $target_path = public_path('/uploads/');
@@ -54,12 +46,6 @@ class TopicController extends Controller
             $filename = base64_encode(file_get_contents($file->getRealPath()));
         } else {
             $filename= null;
-=======
-        if($file = $request->image) {
-            $filename = base64_encode(file_get_contents($file->getRealPath()));
-        } else {
-            $filename = null;
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
         }
 
     
@@ -98,7 +84,6 @@ class TopicController extends Controller
 
         return redirect()->back();
     }
-<<<<<<< HEAD
 
    // public function indexsearch(Request $request)
    // {
@@ -116,6 +101,4 @@ class TopicController extends Controller
     //    return view('index', compact('keyword'));
    // }
 
-=======
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
 }
