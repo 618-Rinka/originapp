@@ -40,19 +40,14 @@ return [
             'driver' => 'pgsql',
             'host' => $DATABASE_URL["host"] ?? '',
             'port' => $DATABASE_URL["port"] ?? '',
-<<<<<<< HEAD
-            'database' => ltrim($DATABASE_URL["path"] ?? '',"/"),
-=======
             'database' => ltrim($DATABASE_URL["path"] ?? '', "/"),
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
             'username' => $DATABASE_URL["user"] ?? '',
             'password' => $DATABASE_URL["pass"] ?? '',
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'require',
-        ],
-        
+        ],        
 
         'sqlite' => [
             'driver' => 'sqlite',

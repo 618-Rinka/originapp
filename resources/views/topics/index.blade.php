@@ -16,11 +16,6 @@
               <input type="submit" value="検索">
             </p>
           </form>
-<<<<<<< HEAD
-
-=======
-          
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
           <div class="row">
             @foreach($topics as $topic)
               <div class="col-lg-4 col-sm-6 mb-4">
@@ -33,8 +28,4 @@
           </div>
       </section>
   </div>
-<<<<<<< HEAD
-@endsection 
-=======
 @endsection
->>>>>>> a1ecf78833055f938e3e54967d9b93037fa4e73f
