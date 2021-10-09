@@ -90,7 +90,6 @@
                                 <li><a class="dropdown-item" href="{{ route('topics.create') }}">投稿する</a></li>
                                 <li><a class="dropdown-item" href="{{ route('topics.index') }}">投稿一覧</a></li>
                                 <li><a class="dropdown-item" href="{{ route('users.update') }}">プロフィール編集</a></li>
-  
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('logout') }}
