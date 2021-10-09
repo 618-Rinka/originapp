@@ -21,53 +21,16 @@
                 </div> 
 
                 <h3>検索</h3>
-                <form action="{{ route('topics.show') }}" method="GET"><p><input type="text" name="keyword" value="@if (isset($keyword)) {{ $keyword }} @endif">
+                <form action="{{ route('topics.index') }}" method="GET"><p><input type="text" name="keyword" value="@if (isset($keyword)) {{ $keyword }} @endif">
                 <input type="submit" value="検索"></p></form>
                 
                 <div class="row">
                   @foreach($topics as $topic)
                     <div class="col-lg-4 col-sm-6 mb-4">
-              <!-- Portfolio item 1-->
-                      <div class="card">
-                        <div class="card-header">{{ $topic->user->name }}</div>
-                        <div class="card-body">
-                          <p class="card-text">{{ $topic->body }}</p>
-                          <p class="card-text"><a href="{{ route('topics.show', $topic->id) }}">詳細を見る</a></p>
-                          @auth
-                          @php
-                            $user = $topic->likingUsers->firstWhere('id', Auth::id());
-                            $count = optional(optional($user)->pivot)->count ?? 0;
-                          @endphp
-                          @if($count < 101)
-                            <form method="POST" action="{{ route('likes.add',$topic->id) }}">
-                              @csrf
-                              <button type="submit" class="btn btn-success">いいねする{{ $count > 0 ? '（' . $count . '）' : '' }}</button>
-                            </form>
-                          @else
-                          <button type="submit" class="btn btn-success">いいねは100回までです</button>
-                          @endif
-                        @endauth
-
-                        @auth
-                          @if($topic->likingUsers->contains(Auth::id()))
-                            <form method="POST" action="{{ route('likes.remove', $topic->id) }}">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">いいねを解除する</button>
-                            </form>
-                          @endif
-                        @endauth
-
-                          @if(Auth::id() === $topic->user_id)
-                            <form method="POST" action="{{ route('topics.delete', $topic->id) }}">
-                              @csrf
-                              <button type="submit" class="btn btn-danger">削除</button>
-                            </form>
-                          @endif
-                      </div>
+                      @include('topics._topics_item', compact('topics'))
                     </div>
-                  </div>
-                @endforeach
-              </div>
+                  @endforeach
+                </div>
          </section>
 
    <!-- Contact-->

@@ -5,9 +5,11 @@
     <div class="card">
       <div class="card-header">{{ $topic->user->name }}</div>
       <div class="card-body">
-        <p class="card-text">{{ $topic->body }}
-           <img src="public/storage/uploads/{{ $topic->image }}" width="100px">
-
+        <p class="card-text">
+          {{ $topic->body }}
+          @if ($topic->image)
+            <img src="data:image/jpeg;base64, {{ $topic->image }}" class="rounded mx-auto d-block" alt="{{ $topic->body }}">
+          @endif
         </p>
         @auth
           @php
