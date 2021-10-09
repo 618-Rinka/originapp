@@ -10,7 +10,7 @@
   <div class="row justify-content-center">
       <label class="col-md-4 col-form-label text-md-right"> SNSアカウント：</label>
           <div class="col-md-4">
-          {{ $user->sns }}
+          <a href=" {{ $user->sns }} ">Twiiter</a>
           </div>
   </div>
 

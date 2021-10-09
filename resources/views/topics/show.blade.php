@@ -9,7 +9,7 @@
           {{ $topic->body }}
           <!-- <img src="public/storage/uploads/{{ $topic->image }}" width="100px"> -->
           @if ($topic->image)
-            <img src="data:image/jpeg;base64, {{ $topic->image }}" class="rounded mx-auto d-block" alt="{{ $topic->body }}" width="100px">
+            <img src="data:image/jpeg;base64, {{ $topic->image }}" class="rounded mx-auto d-block" alt="{{ $topic->body }}" width="300px">
           @endif
 
         </p>

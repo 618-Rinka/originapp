@@ -28,7 +28,7 @@
       </div>
 
       <div class="row g-3">
-        <label class="col-md-4 col-form-label text-md-right"> SNS：</label>
+        <label class="col-md-4 col-form-label text-md-right"> Twitter：</label>
           <div class="col-md-6">
             <input name="sns" type="text" value="{{$user->sns}}" />
           </div>
